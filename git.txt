@@ -1,0 +1,6 @@
+git Your branch is ahead of 'origin/master' by
+
+
+
+遇到这种问题，表示在你之前已经有x个commit了，直接git reset --hard HEAD~x解决 ,这里的x表示的就是在这之前已经有多少次的提交，
+这句命令的意思就是直接回退到x 个commit之前。这样就可以了。
