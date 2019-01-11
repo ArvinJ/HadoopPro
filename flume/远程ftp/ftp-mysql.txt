@@ -1,0 +1,45 @@
+a2.sources = ftp2
+a2.channels = c2
+a2.sinks = k2
+
+
+### define sources
+
+a2.sources.ftp2.type = org.apache.flume.source.FTPSource
+a2.sources.ftp2.client.source = ftp 
+a2.sources.ftp2.name.server = node-1
+a2.sources.ftp2.port = 21
+a2.sources.ftp2.user = zuiqiangge 
+a2.sources.ftp2.password = linqiang1102
+a2.sources.ftp2.working.directory = /var/ftp/pub/
+a2.sources.ftp2.filter.pattern = .+\.txt 
+a2.sources.ftp2.folder = /var/ftp/pub/
+a2.sources.ftp2.file.name = ftp2-status-file.ser 
+a2.sources.ftp2.run.discover.delay=5000 
+a2.sources.ftp2.flushlines = true 
+a2.sources.ftp2.interceptors = i1
+a2.sources.ftp2.interceptors.i1.type = com.pengyue.myInterceptor.CustomInterceptor$CounterInterceptorBuilder
+a2.sources.ftp2.interceptors.i1.perserveExisting = true
+#a2.sources.ftp2.search.recursive = true 
+#a2.sources.ftp2.processInUse = false 
+#a2.sources.ftp2.processInUseTimeout = 30 
+#a2.sources.ftp2.channels = c2
+
+
+### define channels
+
+a2.channels.c2.type = memory
+#a2.channels.c2.capacity = 1000
+#a2.channels.c2.transactionCapacity = 100
+### define sinks
+
+
+#a2.sinks.k2.type = file_roll
+#a2.sinks.k2.channel = c2
+#a2.sinks.k2.sink.directory = /var/log/flume
+a2.sinks.k2.type=com.pengyue.mysink.MySqlSink
+
+### bind the sources and sinks to the channels
+
+a2.sources.ftp2.channels=c2
+a2.sinks.k2.channel = c2
