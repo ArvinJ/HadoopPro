@@ -1,52 +1,247 @@
-# Apache Hadoop
+# Apache Hadoop(思想:化整为零,并行计算)
 
+#### 简介
+
+```doc
 用于开发和运行处理大规模数据的软件平台。允许使用简单的编程模型在大量计算机集群上对大型数据进行分布式处理。
-
 Hadoop是Apache旗下的一款软件，更广泛的说是Hadoop生态圈，下面是Hadoop2.0 的核心组件
-
 HDFS  （hadoop分布式文件系统）：解决海量数据存储
-
 MapReduce（分布式运算编程框架）：解决海量数据计算处理
-
 YARN(作业调度和集群资源管理的框架)：解决资源任务调度资源管理
-
+Common  常用工具
 
 
 Hadoop 是Apache Lucene 创始人 Doug Cutting 创建的。
-
-
-
 基于谷歌的GFS   MapReduce  BigTable 三篇论文思想 开发出来了。
-
 Hadoop特点
-
 扩容能力强
-
 成本低
-
 高效率
-
 可靠性
 
 
+Hadoop 集群包含两个集群：HDFS集群和YARN集群，两都逻辑上分离，物理上常在一起。
+HDFS 集群负责海量数据的存储，集群中的角色有NameNode、DataNode、SecondaryNameNode。
+YARN集群负责海量数据运算时的资源调度，集群中的角色有ResourceManager、NodeManager
+mapreduce 是一个分布式运算编程框架，是应用程序开发包，由用户按照编辑规范进行程序开发，后打包运行在HDFS集群上，并且受到YARN集群的资源调试管理。
+```
 
 
+
+#### 存储模型
+
+```
+按字节存储
+文件线性切割成块（Block）
+Block 分散存储在集群节点中
+单一文件Block大小一致，文件与文件可以不一样
+Block 分散在无序的节点上，Block可以设置副本数，副本数不要超过节点数。
+文件上传可以设置Block大小和副本数。
+已经上传的文件Block副本数可以调整，大小不变。
+只支持一次写入多次读取，同一时刻只有一个写入者。
+可以append追加数据，不能修改数据。
+```
+
+#### Block 的放置策略
+
+```doc
+第一个副本：放置在上传文件的DataNode;如果是集群外提交，则随机挑选一台磁盘不太满，CPU不太忙的节点点。
+第二个副本：放置在第一个副本不同的机架的节点上。
+第三个副本：放置在与第二个副本相同机架不同节点上。
+更多副本：随机节点。
+```
+
+
+
+#### 架构模型
+
+```doc
+文件元数据MetaData，文件数据包括了	元数据 和 数据本身 组成。
+（主）NameNode节点保存文件元数据：单节点   posix
+（从）DataNode节点保存文件Block数据：多节点
+DataNode与NameNode保持心跳，提交Block列表
+HdfsClient与NameNode交互元数据信息
+HdfsClient与DataNode交互文件Block数据
+DataNode利用服务器本地文件系统存储数据块
+```
+
+1.NameNode(NN)
+
+```doc
+基于内存存储 ：不会和磁盘发生交换
+只存在内存中
+持久化
+NameNode主要功能：
+接受客户端的读写服务
+收集DataNode汇报的Block列表信息
+NameNode保存metadata信息包括
+文件owership和permissions
+文件大小，时间
+（Block列表：Block偏移量），位置信息
+Block每副本位置（由DataNode上报）
+
+NameNode持久化
+NameNode的metadate信息在启动后会加载到内存
+metadata存储到磁盘文件名为”fsimage”
+Block的位置信息不会保存到fsimage
+edits记录对metadata的操作日志。。。redis
+```
+
+2.DataNode（DN）
+
+```doc
+本地磁盘目录存储数据（Block），文件形式
+同时存储Block的元数据信息文件
+启动DN时会向NN汇报block信息
+通过向NN发送心跳保持与其联系（3秒一次），如果NN 10分钟没有收到DN的心跳，则认为其已经lost，并copy其上的block到其它DN
+```
+
+3.SecondaryNameNode（SNN）
+
+```doc
+它不是NN的备份（但可以做备份），它的主要工作是帮助NN合并edits log，减少NN启动时间。
+SNN执行合并时机
+根据配置文件设置的时间间隔fs.checkpoint.period  默认3600秒
+•  根据配置文件设置edits log大小 fs.checkpoint.size 规定edits文件的最大值默认是64MB	
+
+```
+
+
+
+#### Hadoop版本
+
+```doc
+
+GA  和 Release 都 是官方正式发布版
+Beta 对外测试版
+Alpha 内部测试版
 
 Hadoop2系列中最稳定版本：Apache Hadoop2.7.4
+现在已经到达  Hadoop3 了
+
+```
+
+#### Hadoop3 新特征
+
+```doc
 
 
 
-Hadoop 集群包含两个集群：HDFS集群和YARN集群，两都逻辑上分离，物理上常在一起。
-
-HDFS 集群负责海量数据的存储，集群中的角色有NameNode、DataNode、SecondaryNameNode。
-
-YARN集群负责海量数据运算时的资源调度，集群中的角色有ResourceManager、NodeManager
-
-mapreduce 是一个分布式运算编程框架，是应用程序开发包，由用户按照编辑规范进行程序开发，后打包运行在HDFS集群上，并且受到YARN集群的资源调试管理。
+```
 
 
 
-Hadoop 集群搭建
+#### HDFS优点
+
+```doc
+高容错性
+数据自动保存多个副本
+ 副本丢失后，自动恢复
+适合批处理
+移动计算而非数据
+数据位置暴露给计算框架（Block偏移量）
+适合大数据处理
+GB 、TB 、甚至PB 级数据
+百万规模以上的文件数量
+10K+ 节点
+可构建在廉价机器上
+通过多副本提高可靠性
+提供了容错和恢复 机制
+
+```
+
+#### HDFS缺点
+
+````doc
+
+低延迟数据访问
+比如毫秒级
+低延迟与高吞吐率
+小文件存取
+占用NameNode 大量内存
+寻道时间超过读取时间
+并发写入、文件随机修改
+一个文件只能有一个写者
+仅支持append
+
+````
+
+
+
+#### HDFS 写流程
+
+```doc
+Client：
+切分文件Block
+按Block线性和NN获取DN列表（副本数）
+验证DN列表后以更小的单位流式传输数据
+各节点，两两通信确定可用
+Block传输结束后：
+DN向NN汇报Block信息
+DN向Client汇报完成
+Client向NN汇报完成
+获取下一个Block存放的DN列表
+。。。。。。
+最终Client汇报完成
+NN会在写流程更新文件状态
+
+```
+
+#### HDFS读流程
+
+```doc
+Client：
+和NN获取一部分Block副本位置列表
+线性和DN获取Block，最终合并为一个文件
+在Block副本列表中按距离择优选取
+
+```
+
+#### 安全模式
+
+```doc
+namenode启动的时候，首先将映像文件(fsimage)载入内存，并执行编辑日志(edits)中的各项操作。
+一旦在内存中成功建立文件系统元数据的映射，则创建一个新的fsimage文件(这个操作不需要SecondaryNameNode)和一个空的编辑日志。
+此刻namenode运行在安全模式。即namenode的文件系统对于客服端来说是只读的。(显示目录，显示文件内容等。写、删除、重命名都会失败)。
+在此阶段Namenode收集各个datanode的报告，当数据块达到最小副本数以上时，会被认为是“安全”的， 在一定比例（可设置）的数据块被确定为“安全”后，再过若干时间，安全模式结束
+当检测到副本数不足的数据块时，该块会被复制直到达到最小副本数，系统中数据块的位置并不是由namenode维护的，而是以块列表形式存储在datanode中。
+```
+
+
+
+#### Hadoop - hdfs
+
+````doc
+集群
+角色==进程
+namenode
+数据元数据
+内存存储，不会有磁盘交换
+持久化（fsimage，eidts log）
+不会持久化block的位置信息
+block：偏移量，因为block不可以调整大小，hdfs，不支持修改文件
+偏移量不会改变
+datanode
+block块
+磁盘
+面向文件，大小一样，不能调整
+副本数，调整，（备份，高可用，容错/可以调整很多个，为了计算向数据移动）
+SN
+NN&DN
+心跳机制
+DN向NN汇报block信息
+安全模式
+client
+
+````
+
+
+
+
+
+
+
+#### Hadoop 集群搭建
 
 前期准备
 
@@ -238,6 +433,12 @@ vi hadoop-env.sh
 
 export JAVA_HOME=/root/jdk1.8/jdk1.8.0_65
 
+export HDFS_NAMENODE_USER=root
+
+export HDFS_DATANODE_USER=root
+
+export HDFS_SECONDARYNAMENODE_USER=root
+
  which java
 
 查看本地java 安装路径
@@ -277,9 +478,6 @@ vi core-site.xml
   <value>node-2:50090</value>
 </property>
 
-
-
-
 ```
 
 
@@ -297,7 +495,6 @@ vi mapred-site.xml
   <name>mapreduce.framework.name </name>
   <value>yarn</value>
 </property>
-
 ```
 
 
@@ -335,7 +532,9 @@ node-2
 
 node-3
 
+-------------------------------------------------
 
+在hadoop 3的情况下  没有了slaves 文件  要修改 workers ,输入同样的内容。
 
 
 
@@ -346,7 +545,6 @@ vi /etc/profile
 export HADOOP_HOME=/root/hadoop/hadoop-2.7.7/
 
 export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
-
 ```
 
 source /etc/profile
@@ -374,7 +572,6 @@ scp -r /etc/profile  root@node-2:/etc/
 如果用户没有更改    那么这里面的选项将会生效
 ***-site.xml 这里面配置了用户需要 自定义的配置选项
 site中配置选项做优先级>Default中的，如果有配置的话，就会覆盖默认的配置选项
-
 ```
 
 
