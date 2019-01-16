@@ -19,6 +19,12 @@ cat /etc/hosts                                           # 检查
 
 
 
+#### 查看JAVA_HOME
+
+echo $JAVA_HOME
+
+
+
 
 ##### 查看ip地址
 
