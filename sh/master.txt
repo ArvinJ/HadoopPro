@@ -1,0 +1,430 @@
+#agent1 name
+agent1.sources =rt1 rt2 rt3 rt4 rt5 rt6 rt7 ra1 ra2 ra3 ra4 ra5 ra6 ra7  rb1 rb2 rb3 rb4 rb5 rb6 rb7 
+agent1.sinks =kt1 kt2 kt3 kt4 kt5 kt6 kt7  ka1 ka2 ka3 ka4 ka5 ka6 ka7  kb1 kb2 kb3 kb4 kb5 kb6 kb7  kc1 kc2 kc3 kc4 kc5 kc6 kc7
+agent1.channels =ct1 ct2 ct3 ct4 ct5 ct6 ct7
+
+#set group
+agent1.sinkgroups=g1
+agent1.sinkgroups=g2
+agent1.sinkgroups=g3
+agent1.sinkgroups=g4
+agent1.sinkgroups=g5
+agent1.sinkgroups=g6
+agent1.sinkgroups=g7
+
+# rt1 ra1 rb1
+agent1.sources.rt1.channels=ct1
+agent1.sources.rt1.type=spooldir
+agent1.sources.rt1.spoolDir=/home/ftpuser/wifi.01
+agent1.sources.rt1.includePattern =^.*WA_BASIC_FJ_0001.*\\.bcp\\b$
+agent1.sources.rt1.fileHeader=true
+agent1.sources.ra1.channels=ct1
+agent1.sources.ra1.type=spooldir
+agent1.sources.ra1.spoolDir=/home/ftpuser/wifi.02
+agent1.sources.ra1.includePattern =^.*WA_BASIC_FJ_0001.*\\.bcp\\b$
+agent1.sources.ra1.fileHeader=true
+agent1.sources.rb1.channels=ct1
+agent1.sources.rb1.type=spooldir
+agent1.sources.rb1.spoolDir=/home/ftpuser/wifi.03
+agent1.sources.rb1.includePattern =^.*WA_BASIC_FJ_0001.*\\.bcp\\b$
+agent1.sources.rb1.fileHeader=true
+
+
+# rt2 ra2 rb2
+agent1.sources.rt2.channels=ct2
+agent1.sources.rt2.type=spooldir
+agent1.sources.rt2.spoolDir=/home/ftpuser/wifi.01
+agent1.sources.rt2.includePattern =^.*WA_BASIC_FJ_1002.*\\.bcp\\b$
+agent1.sources.rt2.fileHeader=true
+agent1.sources.ra2.channels=ct2
+agent1.sources.ra2.type=spooldir
+agent1.sources.ra2.spoolDir=/home/ftpuser/wifi.02
+agent1.sources.ra2.includePattern =^.*WA_BASIC_FJ_1002.*\\.bcp\\b$
+agent1.sources.ra2.fileHeader=true
+agent1.sources.rb2.channels=ct2
+agent1.sources.rb2.type=spooldir
+agent1.sources.rb2.spoolDir=/home/ftpuser/wifi.03
+agent1.sources.rb2.includePattern =^.*WA_BASIC_FJ_1002.*\\.bcp\\b$
+agent1.sources.rb2.fileHeader=true
+
+# rt3 ra3 rb3
+agent1.sources.rt3.channels=ct3
+agent1.sources.rt3.type=spooldir
+agent1.sources.rt3.spoolDir=/home/ftpuser/wifi.01
+agent1.sources.rt3.includePattern =^.*WA_BASIC_FJ_0002.*\\.bcp\\b$
+agent1.sources.rt3.fileHeader=true
+agent1.sources.ra3.channels=ct3
+agent1.sources.ra3.type=spooldir
+agent1.sources.ra3.spoolDir=/home/ftpuser/wifi.02
+agent1.sources.ra3.includePattern =^.*WA_BASIC_FJ_0002.*\\.bcp\\b$
+agent1.sources.ra3.fileHeader=true
+agent1.sources.rb3.channels=ct3
+agent1.sources.rb3.type=spooldir
+agent1.sources.rb3.spoolDir=/home/ftpuser/wifi.03
+agent1.sources.rb3.includePattern =^.*WA_BASIC_FJ_0002.*\\.bcp\\b$
+agent1.sources.rb3.fileHeader=true
+
+
+# rt4 ra4 rb4
+agent1.sources.rt4.channels=ct4
+agent1.sources.rt4.type=spooldir
+agent1.sources.rt4.spoolDir=/home/ftpuser/wifi.01
+agent1.sources.rt4.includePattern =^.*WA_SOURCE_FJ_0001.*\\.bcp\\b$
+agent1.sources.rt4.fileHeader=true
+agent1.sources.ra4.channels=ct4
+agent1.sources.ra4.type=spooldir
+agent1.sources.ra4.spoolDir=/home/ftpuser/wifi.02
+agent1.sources.ra4.includePattern =^.*WA_SOURCE_FJ_0001.*\\.bcp\\b$
+agent1.sources.ra4.fileHeader=true
+agent1.sources.rb4.channels=ct4
+agent1.sources.rb4.type=spooldir
+agent1.sources.rb4.spoolDir=/home/ftpuser/wifi.03
+agent1.sources.rb4.includePattern =^.*WA_SOURCE_FJ_0001.*\\.bcp\\b$
+agent1.sources.rb4.fileHeader=true
+
+# rt5 ra5 rb5
+
+agent1.sources.rt5.channels=ct5
+agent1.sources.rt5.type=spooldir
+agent1.sources.rt5.spoolDir=/home/ftpuser/wifi.01
+agent1.sources.rt5.includePattern =^.*WA_SOURCE_FJ_0002.*\\.bcp\\b$
+agent1.sources.rt5.fileHeader=true
+agent1.sources.ra5.channels=ct5
+agent1.sources.ra5.type=spooldir
+agent1.sources.ra5.spoolDir=/home/ftpuser/wifi.02
+agent1.sources.ra5.includePattern =^.*WA_SOURCE_FJ_0002.*\\.bcp\\b$
+agent1.sources.ra5.fileHeader=true
+agent1.sources.rb5.channels=ct5
+agent1.sources.rb5.type=spooldir
+agent1.sources.rb5.spoolDir=/home/ftpuser/wifi.03
+agent1.sources.rb5.includePattern =^.*WA_SOURCE_FJ_0002.*\\.bcp\\b$
+agent1.sources.rb5.fileHeader=true
+
+
+# rt6 ra6 rb6
+agent1.sources.rt6.channels=ct6
+agent1.sources.rt6.type=spooldir
+agent1.sources.rt6.spoolDir=/home/ftpuser/wifi.01
+agent1.sources.rt6.includePattern =^.*WA_SOURCE_FJ_1001.*\\.bcp\\b$
+agent1.sources.rt6.fileHeader=true
+agent1.sources.ra6.channels=ct6
+agent1.sources.ra6.type=spooldir
+agent1.sources.ra6.spoolDir=/home/ftpuser/wifi.02
+agent1.sources.ra6.includePattern =^.*WA_SOURCE_FJ_1001.*\\.bcp\\b$
+agent1.sources.ra6.fileHeader=true
+agent1.sources.rb6.channels=ct6
+agent1.sources.rb6.type=spooldir
+agent1.sources.rb6.spoolDir=/home/ftpuser/wifi.03
+agent1.sources.rb6.includePattern =^.*WA_SOURCE_FJ_1001.*\\.bcp\\b$
+agent1.sources.rb6.fileHeader=true
+
+
+# rt7 ra7 rb7
+agent1.sources.rt7.channels=ct7
+agent1.sources.rt7.type=spooldir
+agent1.sources.rt7.spoolDir=/home/ftpuser/wifi.01
+agent1.sources.rt7.includePattern =^.*WA_SOURCE_FJ_1002.*\\.bcp\\b$
+agent1.sources.rt7.fileHeader=true
+
+agent1.sources.ra7.channels=ct7
+agent1.sources.ra7.type=spooldir
+agent1.sources.ra7.spoolDir=/home/ftpuser/wifi.02
+agent1.sources.ra7.includePattern =^.*WA_SOURCE_FJ_1002.*\\.bcp\\b$
+agent1.sources.ra7.fileHeader=true
+
+agent1.sources.rb7.channels=ct7
+agent1.sources.rb7.type=spooldir
+agent1.sources.rb7.spoolDir=/home/ftpuser/wifi.02
+agent1.sources.rb7.includePattern =^.*WA_SOURCE_FJ_1002.*\\.bcp\\b$
+agent1.sources.rb7.fileHeader=true
+
+
+
+#set ct1
+agent1.channels.ct1.type=memory
+agent1.channels.ct1.capacity=500000
+agent1.channels.ct1.byteCapacity=50000000
+agent1.channels.ct1.keep-alive=30
+agent1.channels.ct1.byteCapacityBufferPercentage=40
+agent1.channels.ct1.transactionCapacity=20000
+#set ct2
+agent1.channels.ct2.type=memory
+agent1.channels.ct2.capacity=500000
+agent1.channels.ct2.byteCapacity=50000000
+agent1.channels.ct2.keep-alive=30
+agent1.channels.ct2.byteCapacityBufferPercentage=40
+agent1.channels.ct2.transactionCapacity=20000
+#set ct3
+agent1.channels.ct3.type=memory
+agent1.channels.ct3.capacity=500000
+agent1.channels.ct3.byteCapacity=50000000
+agent1.channels.ct3.keep-alive=30
+agent1.channels.ct3.byteCapacityBufferPercentage=40
+agent1.channels.ct3.transactionCapacity=20000
+#set ct4
+agent1.channels.ct4.type=memory
+agent1.channels.ct4.capacity=500000
+agent1.channels.ct4.byteCapacity=50000000
+agent1.channels.ct4.keep-alive=30
+agent1.channels.ct4.byteCapacityBufferPercentage=40
+agent1.channels.ct4.transactionCapacity=20000
+#set ct5
+agent1.channels.ct5.type=memory
+agent1.channels.ct5.capacity=500000
+agent1.channels.ct5.byteCapacity=50000000
+agent1.channels.ct5.keep-alive=30
+agent1.channels.ct5.byteCapacityBufferPercentage=40
+agent1.channels.ct5.transactionCapacity=20000
+#set ct6
+agent1.channels.ct6.type=memory
+agent1.channels.ct6.capacity=500000
+agent1.channels.ct6.byteCapacity=50000000
+agent1.channels.ct6.keep-alive=30
+agent1.channels.ct6.byteCapacityBufferPercentage=40
+agent1.channels.ct6.transactionCapacity=20000
+
+
+#set ct7
+agent1.channels.ct7.type=memory
+agent1.channels.ct7.capacity=500000
+agent1.channels.ct7.byteCapacity=50000000
+agent1.channels.ct7.keep-alive=30
+agent1.channels.ct7.byteCapacityBufferPercentage=40
+agent1.channels.ct7.transactionCapacity=20000
+
+#agent1.channels.ct7.type=memory
+#agent1.channels.ct7.capacity=10000000
+#agent1.channels.ct7.transactionCapacity=1000
+
+
+
+#set sink node-6 kt1
+agent1.sinks.kt1.channel=ct1
+agent1.sinks.kt1.type=avro
+agent1.sinks.kt1.hostname=node-6
+agent1.sinks.kt1.port=52021
+
+
+#set sink node-9 kt1
+agent1.sinks.ka1.channel=ct1
+agent1.sinks.ka1.type=avro
+agent1.sinks.ka1.hostname=node-9
+agent1.sinks.ka1.port=52021
+
+#set sink node-10 kt1
+agent1.sinks.kb1.channel=ct1
+agent1.sinks.kb1.type=avro
+agent1.sinks.kb1.hostname=node-10
+agent1.sinks.kb1.port=52021
+
+#set sink node-8 kt1
+agent1.sinks.kc1.channel=ct1
+agent1.sinks.kc1.type=avro
+agent1.sinks.kc1.hostname=node-8
+agent1.sinks.kc1.port=52021
+
+#set sink node-6 kt2
+agent1.sinks.kt2.channel=ct2
+agent1.sinks.kt2.type=avro
+agent1.sinks.kt2.hostname=node-6
+agent1.sinks.kt2.port=52022
+
+#set sink node-9 kt2
+agent1.sinks.ka2.channel=ct2
+agent1.sinks.ka2.type=avro
+agent1.sinks.ka2.hostname=node-9
+agent1.sinks.ka2.port=52022
+
+
+#set sink node-10 kt2
+agent1.sinks.kb2.channel=ct2
+agent1.sinks.kb2.type=avro
+agent1.sinks.kb2.hostname=node-10
+agent1.sinks.kb2.port=52022
+
+
+#set sink node-8 kt2
+agent1.sinks.kc2.channel=ct2
+agent1.sinks.kc2.type=avro
+agent1.sinks.kc2.hostname=node-8
+agent1.sinks.kc2.port=52022
+
+#set sink node-6 kt3
+agent1.sinks.kt3.channel=ct3
+agent1.sinks.kt3.type=avro
+agent1.sinks.kt3.hostname=node-6
+agent1.sinks.kt3.port=52023
+
+
+#set sink node-9 kt3
+agent1.sinks.ka3.channel=ct3
+agent1.sinks.ka3.type=avro
+agent1.sinks.ka3.hostname=node-9
+agent1.sinks.ka3.port=52023
+
+#set sink node-10 kt3
+agent1.sinks.kb3.channel=ct3
+agent1.sinks.kb3.type=avro
+agent1.sinks.kb3.hostname=node-10
+agent1.sinks.kb3.port=52023
+
+
+#set sink node-8 kt3
+agent1.sinks.kc3.channel=ct3
+agent1.sinks.kc3.type=avro
+agent1.sinks.kc3.hostname=node-8
+agent1.sinks.kc3.port=52023
+
+
+
+
+#set sink node-6 kt4
+agent1.sinks.kt4.channel=ct4
+agent1.sinks.kt4.type=avro
+agent1.sinks.kt4.hostname=node-6
+agent1.sinks.kt4.port=52024
+
+#set sink node-9 kt4
+agent1.sinks.ka4.channel=ct4
+agent1.sinks.ka4.type=avro
+agent1.sinks.ka4.hostname=node-9
+agent1.sinks.ka4.port=52024
+
+#set sink node-10 kt4
+agent1.sinks.kb4.channel=ct4
+agent1.sinks.kb4.type=avro
+agent1.sinks.kb4.hostname=node-10
+agent1.sinks.kb4.port=52024
+
+#set sink node-8 kt4
+agent1.sinks.kc4.channel=ct4
+agent1.sinks.kc4.type=avro
+agent1.sinks.kc4.hostname=node-8
+agent1.sinks.kc4.port=52024
+
+#set sink node-6 kt5
+agent1.sinks.kt5.channel=ct5
+agent1.sinks.kt5.type=avro
+agent1.sinks.kt5.hostname=node-6
+agent1.sinks.kt5.port=52025
+
+#set sink node-9 kt5
+agent1.sinks.ka5.channel=ct5
+agent1.sinks.ka5.type=avro
+agent1.sinks.ka5.hostname=node-9
+agent1.sinks.ka5.port=52025
+
+#set sink node-10 kt5
+agent1.sinks.kb5.channel=ct5
+agent1.sinks.kb5.type=avro
+agent1.sinks.kb5.hostname=node-10
+agent1.sinks.kb5.port=52025
+
+#set sink node-8 kt5
+agent1.sinks.kc5.channel=ct5
+agent1.sinks.kc5.type=avro
+agent1.sinks.kc5.hostname=node-8
+agent1.sinks.kc5.port=52025
+
+#set sink node-6 kt6
+agent1.sinks.kt6.channel=ct6
+agent1.sinks.kt6.type=avro
+agent1.sinks.kt6.hostname=node-6
+agent1.sinks.kt6.port=52026
+
+#set sink node-9 kt6
+agent1.sinks.ka6.channel=ct6
+agent1.sinks.ka6.type=avro
+agent1.sinks.ka6.hostname=node-9
+agent1.sinks.ka6.port=52026
+
+
+#set sink node-10 kt6
+agent1.sinks.kb6.channel=ct6
+agent1.sinks.kb6.type=avro
+agent1.sinks.kb6.hostname=node-10
+agent1.sinks.kb6.port=52026
+
+#set sink node-8 kt6
+agent1.sinks.kc6.channel=ct6
+agent1.sinks.kc6.type=avro
+agent1.sinks.kc6.hostname=node-8
+agent1.sinks.kc6.port=52026
+
+#set sink node-6 kt7
+agent1.sinks.kt7.channel=ct7
+agent1.sinks.kt7.type=avro
+agent1.sinks.kt7.hostname=node-6
+agent1.sinks.kt7.port=52027
+
+
+#set sink node-9 kt7
+agent1.sinks.ka7.channel=ct7
+agent1.sinks.ka7.type=avro
+agent1.sinks.ka7.hostname=node-9
+agent1.sinks.ka7.port=52027
+
+#set sink node-10 kt7
+agent1.sinks.kb7.channel=ct7
+agent1.sinks.kb7.type=avro
+agent1.sinks.kb7.hostname=node-10
+agent1.sinks.kb7.port=52027
+
+
+
+
+
+#set sink node-8 kt7
+agent1.sinks.kc7.channel=ct7
+agent1.sinks.kc7.type=avro
+agent1.sinks.kc7.hostname=node-8
+agent1.sinks.kc7.port=52027
+
+
+#set sink group
+agent1.sinkgroups.g1.sinks=kt1 ka1 kb1 kc1 
+agent1.sinkgroups.g2.sinks=kt2 ka2 kb2 kc2 
+agent1.sinkgroups.g3.sinks=kt3 ka3 kb3 kc3
+agent1.sinkgroups.g4.sinks=kt4 ka4 kb4 kc4
+agent1.sinkgroups.g5.sinks=kt5 ka5 kb5 kc5
+agent1.sinkgroups.g6.sinks=kt6 ka6 kb6 kc6
+agent1.sinkgroups.g7.sinks=kt7 ka7 kb7 kc7
+
+
+#set failover
+agent1.sinkgroups.g1.processor.type=load_balance
+agent1.sinkgroups.g1.processor.backoff=true
+agent1.sinkgroups.g1.processor.selector=random
+agent1.sinkgroups.g1.processor.selector.maxTimeOut=100
+
+#set failover
+agent1.sinkgroups.g2.processor.type=load_balance
+agent1.sinkgroups.g2.processor.backoff=true
+agent1.sinkgroups.g2.processor.selector=random
+agent1.sinkgroups.g2.processor.selector.maxTimeOut=100
+
+#set failover
+agent1.sinkgroups.g3.processor.type=load_balance
+agent1.sinkgroups.g3.processor.backoff=true
+agent1.sinkgroups.g3.processor.selector=random
+agent1.sinkgroups.g3.processor.selector.maxTimeOut=100
+#set failover
+agent1.sinkgroups.g4.processor.type=load_balance
+agent1.sinkgroups.g4.processor.backoff=true
+agent1.sinkgroups.g4.processor.selector=random
+agent1.sinkgroups.g4.processor.selector.maxTimeOut=100
+#set failover
+agent1.sinkgroups.g5.processor.type=load_balance
+agent1.sinkgroups.g5.processor.backoff=true
+agent1.sinkgroups.g5.processor.selector=random
+agent1.sinkgroups.g5.processor.selector.maxTimeOut=100
+#set failover
+agent1.sinkgroups.g6.processor.type=load_balance
+agent1.sinkgroups.g6.processor.backoff=true
+agent1.sinkgroups.g6.processor.selector=random
+agent1.sinkgroups.g6.processor.selector.maxTimeOut=100
+#set failover
+agent1.sinkgroups.g7.processor.type=load_balance
+agent1.sinkgroups.g7.processor.backoff=true
+agent1.sinkgroups.g7.processor.selector=random
+agent1.sinkgroups.g7.processor.selector.maxTimeOut=100

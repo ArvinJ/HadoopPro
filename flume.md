@@ -200,3 +200,18 @@ public class MyInterceptor implements Interceptor {
 
 对package 右键 Export   -->选择JAR file   打包 放入lib 下面。
 
+
+
+
+
+
+
+#### flume 优化
+
+ capacity  :   存储在channel中的events的最大数量
+ transactionCapacity ： 每次数据由channel到sink传输的最大events的数量
+
+
+
+
+
