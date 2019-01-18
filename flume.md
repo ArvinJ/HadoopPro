@@ -2,6 +2,22 @@
 
 
 
+```doc
+.ＣＯＭＰＬＥＴＥ　读取后 立即删除
+##注意：不能往监控目中重复丢同名文件
+## 通过spooldir来监控文件内容的变化
+a1.sources.r1.type = spooldir
+a1.sources.r1.spoolDir = /home/data
+a1.sources.r1.fileHeader = true
+a1.sources.r1.fileSuffix = .wenjinzhu  #更换原先的.COMPLETE后缀为.wenjinzhu
+a1.sources.r1.deletePolicy= immediate
+
+```
+
+
+
+
+
 
 
 #### flume 拦截器
