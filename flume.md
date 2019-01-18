@@ -11,7 +11,24 @@ a1.sources.r1.spoolDir = /home/data
 a1.sources.r1.fileHeader = true
 a1.sources.r1.fileSuffix = .wenjinzhu  #更换原先的.COMPLETE后缀为.wenjinzhu
 a1.sources.r1.deletePolicy= immediate
+```
 
+
+
+
+
+#### Flume ERROR
+
+# java.io.IOException: Not a data file
+
+```doc
+
+我们的解决方案是：把spooldir的source跟踪的目录下的元数据文件删除既可。
+
+flume跟踪的目录下会自动产生 .flumespool文件夹，里面有 .flumespool-main.meta 文件。该文件我理解的是存储的读取文件的 offset，
+
+在读取该文件的时候出现了异常，将该文件删除，一切OK啦。缺点呢是可能会造成数据少量的重复
+https://blog.csdn.net/NicoleSmith/article/details/78517959
 ```
 
 
