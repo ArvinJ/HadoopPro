@@ -157,3 +157,16 @@ cd zookeeper-3.4.8/bin/
 jps
 ```
 
+#### 8、zookeeper error
+安装zookeeper时候，可以查看进程启动，
+但是状态显示报错：Error contacting service. It is probably not running
+没有建立主机和ip之间的映射关系。
+建立主机和ip之间映射关系的命令为
+vim /etc/hosts 
+在文件的末端加入各个主机和ip地址之间的映射关系就可以了。
+
+zoo.cfg
+myid  1,2,3
+tmp/zookeeper/dataDir/
+
+
