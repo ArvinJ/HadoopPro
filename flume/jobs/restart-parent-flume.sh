@@ -16,8 +16,9 @@ for meta in $metapath
 	chmod 777 $meta
 done
 
-mv -f /var/log/flume-ng/flume-cmf-flume-AGENT-node-7.log /var/log/flume-ng/flume-cmf-flume-AGENT-node-7.log.bak
 
+cp -f /var/log/flume-ng/flume-cmf-flume-AGENT-node-7.log /var/log/flume-ng/flume-cmf-flume-AGENT-node-7.log.bak
+cat /dev/null > /var/log/flume-ng/flume-cmf-flume-AGENT-node-7.log
 
 /bin/curl -i -u admin:admin  "http://node-1:7180/api/v19/clusters/Cluster%201/services/flume/commands/restart" -X POST -H "Content-Type:application/json" -d '{"serviceName":"Flume","clusterName":"Cluster%201"}'
 
