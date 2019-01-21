@@ -68,6 +68,8 @@ step2:启动kafka集群
 
 bin/kafka-server-start.sh -daemon config/server.properties
 
+kafka-server-start.sh -daemon /root/kafka_2.11-2.1.0/config/server.properties
+
 后台起动就加上   -daemon
 
 **关闭**
