@@ -473,7 +473,169 @@ HBase  start-hbase.sh
 
 
 
-  
+ ## HBaseHA 部署
+
+1.hbase-env.sh
+
+```xml
+export JAVA_HOME=/root/jdk1.8/jdk1.8.0_162
+export HADOOP_HOME=/root/hadoop/hadoop-2.7.7
+export HBASE_LOG_DIR=/root/hbase-1.4.9/logs
+export HBASE_MANAGES_ZK=false
+```
 
 
+
+2.hbase-site.xml
+
+```xml
+<configuration>
+
+<!-- 设置HRegionServers共享目录 -->
+ 	<property>
+    		<name>hbase.rootdir</name>
+    		<value>hdfs://wenjin/hbase</value>
+  	</property>
+
+ <!-- 开启分布式模式 -->
+  	<property>
+            <name>hbase.cluster.distributed</name>
+            <value>true</value>
+        </property>
+
+        <property>
+            <name>hbase.master</name>
+            <value>60000</value>
+        </property>
+
+ 	<!-- 指定缓存文件存储的路径 -->
+        <property>
+            <name>hbase.tmp.dir</name>
+            <value>/root/hbase-1.4.9/tmp</value>
+        </property>
+
+        <property>
+            <name>hbase.zookeeper.quorum</name>
+            <value>node-5,node-6,node-7</value>
+        </property>
+
+        <!--指定Zookeeper数据目录，需要与ZooKeeper集群上配置相一致 -->
+
+	<property>
+            <name>hbase.zookeeper.property.dataDir</name>
+            <value>/tmp/zookeeper/data</value>
+        </property>
+
+ 	<!-- 指定ZooKeeper集群端口 -->
+        <property>
+            <name>hbase.zookeeper.property.clientPort</name>
+            <value>2181</value>
+        </property>
+
+        <property>
+            <name>zookeeper.session.timeout</name>
+            <value>120000</value>
+        </property>
+
+        <property>
+            <name>hbase.regionserver.restart.on.zk.expire</name>
+            <value>true</value>
+        </property>
+
+
+
+</configuration>
+```
+
+
+
+
+
+2.regionservers
+
+vim  regionservers
+
+```xml
+node-5
+node-6
+node-7
+```
+
+3.新建 backup-masters
+
+vim backup-masters
+
+```xml
+node-5
+```
+
+
+
+创建hbase的缓存文件目录
+`cd /root/hbase-1.4.9/`
+`mkdir tmp`
+
+创建hbase的日志文件目录
+`mkdir logs`
+
+改一下权限
+
+chmod -R 777 tmp
+
+chmod -R 777 logs
+
+
+
+将hbase工作目录同步到集群其它节点
+
+ scp -r /root/hbase-1.4.9/  root@node-5:/root/
+
+ scp -r /root/hbase-1.4.9/  root@node-6:/root/
+
+ scp -r /root/hbase-1.4.9/  root@node-7:/root/
+
+
+
+
+
+在集群各节点上修改用户环境变量
+
+```
+export HBASE_HOME=/usr/local/hbase-1.2.6
+export PATH=$PATH:$HBASE_HOME/bin
+```
+
+
+
+source /etc/profile
+
+
+
+删除hbase的slf4j-log4j12-1.7.5.jar，解决hbase和hadoop的LSF4J包冲突
+
+
+
+## 启动
+
+
+
+node-5,node-6,node-7 分别执行 zkServer.sh start
+
+
+
+node-4 start-dfs.sh
+
+
+
+node-4 start-yarn.sh
+
+
+
+node-5 yarn-daemon.sh start resourcemanager
+
+
+
+node-4 start-hbase.sh
+
+此命令分别在master1/master2节点启动了HMaster，分别在slave1/slave2/slave3节点启动了HRegionServer。
 
