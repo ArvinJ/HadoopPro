@@ -248,3 +248,16 @@ public class MyInterceptor implements Interceptor {
 
 
 
+
+
+a1.channels = c1
+a1.sinks = k1
+a1.sinks.k1.type = org.apache.flume.sink.hbase.HBaseSink
+a1.sinks.k1.table = tab1
+a1.sinks.k1.columnFamily = cf1
+a1.sinks.k1.serializer = org.apache.flume.sink.hbase.RegexHbaseEventSerializer
+a1.sinks.k1.serializer.rowKeyIndex = 0
+a1.sinks.k1.channel = c1
+a1.sinks.hbase-sink.serializer.regex =^([^,]+),([^,]+),([^,]+)$
+a1.sinks.k1.serializer.colNames = ROW_KEY,title,value
+
