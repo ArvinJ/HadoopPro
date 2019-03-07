@@ -434,3 +434,23 @@ namenode进程关掉：hadoop-daemon.sh stop namenode
 active  与 standby  进行切换。
 
 或者  poweroff
+
+
+
+
+
+### EORROR
+
+# Cannot create directory /tmp. Name node is in safe mode
+
+```doc
+问题原因：
+hdfs在启动开始时会进入安全模式，这时文件系统中的内容不允许修改也不允许删除，直到安全模式结束。安全模式主要是为了系统启动的时候检查各个DataNode上数据块的有效性，同时根据策略必要的复制或者删除部分数据块。运行期通过命令也可以进入安全模式。在实践过程中，系统启动的时候去修改和删除文件也会有安全模式不允许修改的出错提示，只需要等待一会儿即可。
+问题解决：
+
+可以等待其自动退出安全模式，也可以使用手动命令来离开安全模式：
+
+hadoop dfsadmin -safemode leave
+
+```
+

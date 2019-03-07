@@ -660,6 +660,8 @@ hdfs dfs -put  test.txt   /hello
 
 
 
+hdfs dfs -chmod 777 /hello
+
 运行mapreduce程序
 
 cd  /hadoop2.7.7/share/hadoop/mapreduce下有官方自带的mapreduce程序

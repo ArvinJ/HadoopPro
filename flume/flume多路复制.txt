@@ -1,0 +1,65 @@
+#2个channel和2个sink的配置文件
+
+# Name the components on this agent
+
+a1.sources = s1
+
+a1.sinks = k1 k2
+
+a1.channels = c1 c2
+
+ 
+
+# Describe/configure the source
+
+a1.sources.s1.type = netcat
+
+a1.sources.s1.bind = 192.168.191.201
+
+a1.sources.s1.port = 44444
+
+# 指定source进行扇出到多个channnel的规则
+
+a1.sources.s1.selector.type = replicating
+
+a1.sources.s1.channels = c1 c2
+
+ 
+
+# Use a channel which buffers events in memory
+
+# 指定channel c1
+
+a1.channels.c1.type = memory
+
+ 
+
+# 指定c2的channel
+
+a1.channels.c2.type = memory
+
+ 
+
+# Describe the sink
+
+# 指定k1的设置
+
+a1.sinks.k1.type = avro
+
+a1.sinks.k1.channel = c1
+
+a1.sinks.k1.hostname = 192.168.191.202
+
+a1.sinks.k1.port = 44445
+
+ 
+
+# 指定k2的
+
+a1.sinks.k2.type = avro
+
+a1.sinks.k2.channel = c2
+
+a1.sinks.k2.hostname = 192.168.191.203
+
+a1.sinks.k2.port = 44445

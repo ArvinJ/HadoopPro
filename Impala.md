@@ -36,9 +36,9 @@ Impala主要由Impalad， State Store和CLI组成。
 
  Impala与Hive都是构建在Hadoop之上的数据查询工具
 
-Hive适合于长时间的批处理查询分析，
+**Hive适合于长时间的批处理查询分析**，
 
-而Impala适合于实时交互式SQL查询，
+而**Impala适合于实时交互式SQL查询**，
 
 Impala给数据分析人员提供了快速实验、验证想法的大数据分析工具。
 

@@ -621,7 +621,7 @@ source /etc/profile
 
 node-5,node-6,node-7 分别执行 zkServer.sh start
 
-
+依次执行/sbin/hadoop-daemon.sh start journalnode
 
 node-4 start-dfs.sh
 
@@ -637,5 +637,23 @@ node-5 yarn-daemon.sh start resourcemanager
 
 node-4 start-hbase.sh
 
-此命令分别在master1/master2节点启动了HMaster，分别在slave1/slave2/slave3节点启动了HRegionServer。
+此命令后，在master1/master2节点启动了HMaster，分别在slave1/slave2/slave3节点启动了HRegionServer。
+
+
+
+
+
+#### EORROR
+
+1、hbase数据库错误总结 ——ERROR: Can't get master address from ZooKeeper; znode data == null
+
+它们 设置的共同文件目录加  读写权限
+
+hbase-site.xml   hbase.zookeeper.property.dataDir    和  zoo.cfg     .../data 文件   。一般是一样的。
+
+
+
+重新启动启动 hbase 服务和zookeeper服务
+
+
 
