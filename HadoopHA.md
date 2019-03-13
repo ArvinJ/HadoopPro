@@ -385,9 +385,13 @@ step1 依次 启动zookeeper
 
 ..../bin/zkServer.sh start
 
-step2 依次 启动 journalnode    
+step2 依次 启动 journalnode   
+
+/root/hadoop/hadoop-2.7.7/sbin 
 
 .../sbin/hadoop-daemon.sh start journalnode
+
+
 
 step3 node-4  格式化hdfs
 
@@ -441,6 +445,10 @@ active  与 standby  进行切换。
 
 ### EORROR
 
+
+
+Caused by: org.apache.hadoop.hdfs.server.namenode.SafeModeException: Cannot create directory /tmp/hive. Name node is in safe mode.
+
 # Cannot create directory /tmp. Name node is in safe mode
 
 ```doc
@@ -451,6 +459,5 @@ hdfs在启动开始时会进入安全模式，这时文件系统中的内容不�
 可以等待其自动退出安全模式，也可以使用手动命令来离开安全模式：
 
 hadoop dfsadmin -safemode leave
-
 ```
 
